@@ -1,0 +1,110 @@
+{% extends 'partials/base.html' %}
+{% block title %} Home Page {% endblock %}
+<link rel="stylesheet" href="/static/index.css">
+{% block content %}
+
+<div class="container graphBox py-5">
+    <div class="row">
+        <div class="col-4 graph1">
+            <div class="box">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="col-8 graph2">
+            <div class="box">
+                <canvas id="earning"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+    // Data for charts
+    const labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
+    const dataValues = [12, 19, 3, 5, 2, 3];
+
+    // pie charts
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var earning = document.getElementById("earning").getContext("2d");
+    var myChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Traffic Source",
+                    data: dataValues,
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)",
+                        "rgba(255, 206, 86, 1)",
+                        "rgba(75, 192, 192, 1)",
+                    ],
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            Plugins: {
+                legend: {
+                    position: "top",
+                }
+
+            }
+        },
+    });
+
+    var myChart = new Chart(earning, {
+        type: "bar",
+        data: {
+            labels: [
+                "January",
+                "Fabruary",
+                "march",
+                "April",
+                "may",
+                "june",
+                "july",
+                "August",
+                "september",
+                "october",
+                "november",
+                "december",
+            ],
+            datasets: [
+                {
+                    label: "Number of Items",
+                    data: dataValues,
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)",
+                        "rgba(255, 206, 86, 1)",
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(46, 49, 245, 1)",
+                        "rgba(16, 157, 160, 1)",
+                        "rgba(219, 49, 245, 1)",
+                        "rgba(229, 42, 83, 0.91)",
+                        "rgba(36, 233, 92, 0.7)",
+                        "rgba(213, 143, 14, 0.79)",
+                    ],
+                },
+            ],
+        },
+        options: {
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    },
+                ],
+            },
+        },
+    });
+</script>
+{% endblock %}
